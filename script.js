@@ -268,3 +268,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 20);
     }
 });
+
+// Tente isso no console para testar
+document.querySelectorAll('*').forEach(el => {
+    el.style.transition = 'none !important';
+    el.style.animation = 'none !important';
+});

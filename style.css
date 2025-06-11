@@ -1643,3 +1643,44 @@ footer p {
         font-size: 1.1rem;
     }
 }
+
+/* Estilos Corrigidos para o CTA */
+.cta-button-fixed {
+    display: inline-block;
+    padding: 18px 35px;
+    background: linear-gradient(135deg, #cc2827 0%, #a02020 100%);
+    color: white !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(204, 40, 39, 0.4);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    white-space: nowrap;
+    position: fixed !important; /* Força posição fixa */
+    right: 20px !important; /* Força posição à direita */
+    bottom: 20px !important; /* Força posição inferior */
+    z-index: 1000 !important; /* Garante que fique acima de outros elementos */
+}
+
+.heartbeat {
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.btn-text {
+    color: white !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
