@@ -228,3 +228,43 @@ function smoothScrollToCTA() {
         }, 2000);
     }
 }
+
+// Efeito de inclinação nos itens (usando a biblioteca vanilla-tilt.js)
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializa o efeito de inclinação
+    if (typeof VanillaTilt !== 'undefined') {
+        VanillaTilt.init(document.querySelectorAll(".content-item"), {
+            max: 15,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.2,
+            scale: 1.03
+        });
+    }
+    
+    // Efeito de revelação sequencial
+    const contentItems = document.querySelectorAll('.content-item');
+    contentItems.forEach((item, index) => {
+        setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+        }, 150 * index);
+    });
+    
+    // Efeito de digitação no subtítulo
+    const subtitle = document.querySelector('.section-subtitle');
+    if (subtitle) {
+        const originalText = subtitle.innerHTML;
+        subtitle.innerHTML = '';
+        
+        let i = 0;
+        const typingEffect = setInterval(() => {
+            if (i < originalText.length) {
+                subtitle.innerHTML += originalText.charAt(i);
+                i++;
+            } else {
+                clearInterval(typingEffect);
+            }
+        }, 20);
+    }
+});

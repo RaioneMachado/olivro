@@ -258,70 +258,268 @@ header h2 {
     color: var(--primary-color);
 }
 
-/* Content Section */
+/* Efeitos Especiais */
+@keyframes red-pulse {
+    0% { text-shadow: 0 0 5px rgba(204, 40, 39, 0.5); }
+    50% { text-shadow: 0 0 20px rgba(204, 40, 39, 0.8); }
+    100% { text-shadow: 0 0 5px rgba(204, 40, 39, 0.5); }
+}
+
+@keyframes glitch {
+    0% { text-shadow: -2px -2px 0 #CC2827, 2px 2px 0 #0A0A0A; }
+    25% { text-shadow: 2px -2px 0 #CC2827, -2px 2px 0 #0A0A0A; }
+    50% { text-shadow: -2px 2px 0 #CC2827, 2px -2px 0 #0A0A0A; }
+    75% { text-shadow: 2px 2px 0 #CC2827, -2px -2px 0 #0A0A0A; }
+    100% { text-shadow: -2px -2px 0 #CC2827, 2px 2px 0 #0A0A0A; }
+}
+
+@keyframes blood-drip {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100vh; }
+}
+
+/* Estilos da Seção */
 .content-section {
-    padding: 60px 0;
+    position: relative;
+    padding: 80px 0;
     text-align: center;
+    background-color: #0A0A0A;
+    overflow: hidden;
+    border-top: 1px solid #CC2827;
+    border-bottom: 1px solid #CC2827;
+}
+
+.blood-drips-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M30,0 Q50,20 70,0 T90,20 L85,100 Q50,80 15,100 L10,20 Q30,10 30,0" fill="rgba(204,40,39,0.03)"/></svg>');
+    animation: blood-drip 60s linear infinite;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
 }
 
 .content-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 50px;
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    color: white;
+    text-transform: uppercase;
+    animation: red-pulse 3s infinite;
 }
 
+.red-glitch {
+    color: #CC2827;
+    animation: glitch 0.5s infinite;
+    position: relative;
+    display: inline-block;
+}
+
+.section-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.prohibited {
+    color: #CC2827;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(204, 40, 39, 0.5);
+    position: relative;
+    display: inline-block;
+}
+
+.prohibited::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #CC2827;
+    transform: rotate(-5deg);
+    opacity: 0.7;
+}
+
+.highlight {
+    color: #CC2827;
+    font-weight: bold;
+}
+
+/* Grid de Conteúdo */
 .content-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    margin-top: 40px;
+    margin-top: 50px;
 }
 
 .content-item {
-    background-color: var(--dark-bg);
+    background: linear-gradient(145deg, #0A0A0A 0%, #1A1A1A 100%);
     padding: 30px;
     border-radius: 10px;
-    transition: all 0.3s;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s;
+    border: 1px solid rgba(204, 40, 39, 0.3);
     position: relative;
     overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.content-item:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(204, 40, 39, 0.2);
+    border: 1px solid rgba(204, 40, 39, 0.7);
 }
 
 .content-item::before {
     content: '';
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
-    height: 5px;
-    background-color: var(--primary-color);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s;
-}
-
-.content-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    height: 100%;
+    background: linear-gradient(135deg, rgba(204, 40, 39, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
 .content-item:hover::before {
-    transform: scaleX(1);
+    opacity: 1;
+}
+
+.secret-badge {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: #CC2827;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transform: rotate(5deg);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
 
 .content-icon {
-    font-size: 2.5rem;
-    color: var(--primary-color);
+    font-size: 3rem;
+    color: #CC2827;
     margin-bottom: 20px;
+    transition: all 0.3s;
+}
+
+.content-item:hover .content-icon {
+    transform: scale(1.2);
+    text-shadow: 0 0 15px rgba(204, 40, 39, 0.7);
 }
 
 .content-item h3 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin-bottom: 15px;
+    color: white;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .content-item p {
     font-size: 1rem;
     line-height: 1.6;
+    color: #CCC;
+    margin-bottom: 20px;
+}
+
+.reveal-text {
+    color: #CC2827;
+    font-weight: bold;
+    position: relative;
+}
+
+.reveal-text::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #CC2827;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s;
+}
+
+.content-item:hover .reveal-text::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.content-hover {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: rgba(10, 10, 10, 0.7);
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.content-hover p {
+    padding: 15px;
+    margin: 0;
+    font-size: 0.9rem;
+    color: #EEE;
+}
+
+.content-item:hover .content-hover {
+    max-height: 100px;
+}
+
+/* Aviso Final */
+.content-warning {
+    margin-top: 60px;
+    padding: 15px;
+    background: rgba(204, 40, 39, 0.1);
+    border: 1px solid #CC2827;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    animation: red-pulse 3s infinite;
+}
+
+.content-warning i {
+    color: #CC2827;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .content-section h2 {
+        font-size: 2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .content-item h3 {
+        min-height: auto;
+    }
 }
 
 /* Bonuses Section */
