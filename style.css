@@ -1683,4 +1683,21 @@ footer p {
     color: white !important;
     text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
+/* Centraliza TODOS os botões mantendo outros estilos */
+button, 
+a[class*="button"], 
+[class*="button"]:not(.no-center) {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  float: none !important;
+  text-align: center !important;
+}
 
+/* Exceção para botões fixos (como CTAs flutuantes) */
+.cta-button-fixed,
+.button-fixed {
+  margin-left: initial !important;
+  margin-right: initial !important;
+  float: initial !important;
+}
