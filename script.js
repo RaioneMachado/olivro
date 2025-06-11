@@ -131,3 +131,100 @@ setInterval(() => {
 }, 5000);
 }
 );
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Efeito de digitação no título (opcional)
+    const title = document.querySelector('.persuasive-content h2');
+    if (title) {
+        const originalText = title.textContent;
+        title.textContent = '';
+        
+        let i = 0;
+        const typingEffect = setInterval(() => {
+            if (i < originalText.length) {
+                title.textContent += originalText.charAt(i);
+                i++;
+            } else {
+                clearInterval(typingEffect);
+            }
+        }, 50);
+    }
+    
+    // Efeito de hover nas balas
+    const bulletItems = document.querySelectorAll('.bullet-item');
+    bulletItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            const icon = item.querySelector('.bullet-icon');
+            if (icon) {
+                icon.textContent = '→';
+            }
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            const icon = item.querySelector('.bullet-icon');
+            if (icon) {
+                icon.textContent = '✧';
+            }
+        });
+    });
+    
+    // Efeito no botão CTA
+    const ctaButton = document.querySelector('.cta-button');
+    if (ctaButton) {
+        ctaButton.addEventListener('click', () => {
+            ctaButton.textContent = 'REDIRECIONANDO...';
+            ctaButton.style.background = 'linear-gradient(to bottom, #990000, #660000)';
+            
+            // Simular redirecionamento após 1.5 segundos
+            setTimeout(() => {
+                // Substitua pela URL real de checkout
+                window.location.href = '#link-de-compra';
+            }, 1500);
+        });
+    }
+});
+
+// Contador Regressivo
+function updateCountdown() {
+    const now = new Date();
+    const hours = 23 - now.getHours();
+    const minutes = 59 - now.getMinutes();
+    const seconds = 59 - now.getSeconds();
+    
+    document.getElementById('countdown-hours').textContent = hours.toString().padStart(2, '0');
+    document.getElementById('countdown-minutes').textContent = minutes.toString().padStart(2, '0');
+    document.getElementById('countdown-seconds').textContent = seconds.toString().padStart(2, '0');
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// Efeito de Cursor Seguindo o Botão
+document.addEventListener('mousemove', (e) => {
+    const ctaButton = document.querySelector('.cta-button');
+    if (ctaButton) {
+        const rect = ctaButton.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        ctaButton.style.setProperty('--mouse-x', `${x}px`);
+        ctaButton.style.setProperty('--mouse-y', `${y}px`);
+    }
+});
+
+// Efeito de Scroll para a seção CTA
+function smoothScrollToCTA() {
+    const ctaSection = document.getElementById('cta');
+    if (ctaSection) {
+        ctaSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+        
+        // Destaque na seção
+        ctaSection.style.boxShadow = '0 0 50px rgba(204, 40, 39, 0.8)';
+        setTimeout(() => {
+            ctaSection.style.boxShadow = 'none';
+        }, 2000);
+    }
+}
